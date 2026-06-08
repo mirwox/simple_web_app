@@ -1,0 +1,21 @@
+# Dependencies
+venv/
+node_modules/
+__pycache__/
+*.pyc
+
+# Database
+*.db
+
+# Environment
+.env
+
+# Build artifacts
+client/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

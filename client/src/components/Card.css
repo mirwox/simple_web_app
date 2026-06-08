@@ -1,0 +1,309 @@
+/* ── Trading Card ───────────────────────────────────────────── */
+.trading-card {
+  position: relative;
+  width: 340px;
+  border-radius: var(--radius-lg);
+  transition: transform 0.1s ease-out, box-shadow var(--transition-base);
+  transform-style: preserve-3d;
+  will-change: transform;
+  flex-shrink: 0;
+}
+
+.trading-card.compact {
+  width: 280px;
+}
+
+.trading-card .card-front,
+.trading-card .card-back {
+  border-radius: var(--radius-lg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.trading-card .card-front {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary, var(--bg-card)) 0%,
+    var(--bg-card) 50%,
+    color-mix(in srgb, var(--color-secondary, var(--accent-primary)) 15%, var(--bg-card)) 100%
+  );
+  border: 2px solid;
+  border-image: linear-gradient(
+    135deg,
+    var(--color-secondary) 0%,
+    transparent 40%,
+    transparent 60%,
+    var(--color-primary) 100%
+  ) 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: var(--space-sm);
+}
+
+.trading-card .card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background: var(--bg-card);
+  border: 2px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.trading-card.flipped .card-front {
+  visibility: hidden;
+}
+
+.trading-card.flipped .card-back {
+  transform: rotateY(0deg);
+}
+
+/* Card back pattern */
+.card-back-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(99, 102, 241, 0.05) 20px, rgba(99, 102, 241, 0.05) 21px),
+    repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(99, 102, 241, 0.05) 20px, rgba(99, 102, 241, 0.05) 21px);
+}
+
+.card-back-logo {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: 1;
+  text-shadow: none;
+}
+
+/* Shimmer */
+.card-shimmer {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  mix-blend-mode: overlay;
+}
+
+.trading-card.hovered .card-shimmer {
+  opacity: 1;
+}
+
+/* Tier glow */
+.trading-card.tier-legendary {
+  --glow-color: rgba(251, 191, 36, 0.5);
+}
+.trading-card.tier-epic {
+  --glow-color: rgba(168, 85, 247, 0.4);
+}
+.trading-card.tier-rare {
+  --glow-color: rgba(59, 130, 246, 0.3);
+}
+.trading-card.tier-common {
+  --glow-color: rgba(107, 114, 128, 0.2);
+}
+
+.trading-card.hovered {
+  box-shadow: 0 0 30px var(--glow-color), var(--shadow-lg);
+}
+
+.trading-card.tier-legendary.hovered {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs) var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.card-org {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-license {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-secondary);
+  padding: 2px 8px;
+  border: 1px solid color-mix(in srgb, var(--color-secondary) 30%, transparent);
+  border-radius: var(--radius-full);
+}
+
+/* ── Mascot Image ──────────────────────────────────────────── */
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+}
+
+.card-mascot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.trading-card.hovered .card-mascot-img {
+  transform: scale(1.05);
+}
+
+.card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--color-primary) 0%,
+    transparent 40%
+  );
+  pointer-events: none;
+}
+
+/* ── Name Plate ────────────────────────────────────────────── */
+.card-nameplate {
+  text-align: center;
+  padding: 0 var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.card-name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.card-mascot-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-secondary);
+  font-style: italic;
+}
+
+/* ── Stats ─────────────────────────────────────────────────── */
+.card-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 50px;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  font-size: var(--text-xs);
+  transition: all var(--transition-fast);
+}
+
+.stat-row.clickable {
+  cursor: pointer;
+}
+
+.stat-row.clickable:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-secondary);
+  transform: translateX(4px);
+}
+
+.stat-row.highlighted {
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.stat-row.stat-player {
+  border-color: var(--green);
+  background: rgba(52, 211, 153, 0.15);
+}
+
+.stat-row.stat-ai {
+  border-color: var(--red);
+  background: rgba(248, 113, 113, 0.15);
+}
+
+.stat-row.stat-draw {
+  border-color: var(--gold);
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.stat-bar-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transition: width 0.8s var(--ease-out);
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-xs);
+  text-align: right;
+  color: var(--text-primary);
+}
+
+/* ── Tagline ───────────────────────────────────────────────── */
+.card-tagline {
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0 var(--space-md);
+  padding-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 400px) {
+  .trading-card {
+    width: 100%;
+    max-width: 340px;
+  }
+  .trading-card.compact {
+    width: 100%;
+    max-width: 280px;
+  }
+}

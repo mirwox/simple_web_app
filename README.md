@@ -2,7 +2,7 @@
 
 An open-weight LLM trading card battle game. Pick stats, outsmart the AI, collect them all.
 
-## 10 Champions
+## 22 Champions
 
 | Model | Mascot | Organization |
 |-------|--------|-------------|
@@ -16,6 +16,18 @@ An open-weight LLM trading card battle game. Pick stats, outsmart the AI, collec
 | Phi-4-mini | Quarky ✨ | Microsoft |
 | MiniMax M3 | Cosmox 🐱 | MiniMax |
 | Command R+ | Corsair 🦜 | Cohere |
+| Llama 3.1 405B | Titanus 🗿 | Meta |
+| Mixtral 8x22B | Hydrax 🌩️ | Mistral AI |
+| DBRX | Brickster 🧱 | Databricks |
+| Grok-1 | Sarcasbot 🤖 | xAI |
+| Jamba 1.5 Large | Mambara 🐍 | AI21 Labs |
+| OLMo 2 | OpenOwl 🦉 | Allen AI |
+| Yi 34B | Yin-Yang ☯️ | 01.AI |
+| Nemotron-4 340B | GPU-Rex 🦖 | Nvidia |
+| Falcon 180B | Aeris 🦅 | TII |
+| Aya Expanse | Polyglot 🦁 | Cohere For AI |
+| Gemma 2 27B | Crystara Prime 💎 | Google |
+| DeepSeek Coder V2 | CodeKraken 🦑 | DeepSeek |
 
 ## Tech Stack
 
@@ -54,7 +66,7 @@ Visit `http://localhost:3000` to play.
 
 ## Game Rules (Top Trumps)
 
-1. Cards are shuffled and dealt — 5 to you, 5 to the AI
+1. Cards are shuffled and dealt — 11 to you, 11 to the AI
 2. On your turn, pick a stat from your top card
 3. Both cards are revealed — highest stat wins the round
 4. Winner takes both cards; draws go to a pot

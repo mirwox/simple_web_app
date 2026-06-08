@@ -6,7 +6,7 @@ services:
     buildCommand: |
       pip install -r server/requirements.txt
       cd client && npm install && npm run build
-    startCommand: cd server && gunicorn "app:create_app('production')"
+    startCommand: gunicorn --chdir server "app:create_app('production')"
     envVars:
       - key: DATABASE_URL
         fromDatabase:

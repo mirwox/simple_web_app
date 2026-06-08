@@ -467,9 +467,12 @@ CARDS_DATA = [
 
 
 def seed_db():
-    """Clear existing cards and insert the 22 LLM trading cards."""
-    Card.query.delete()
+    """Seed the database with 22 LLM trading cards (skips if cards already exist)."""
+    if Card.query.count() > 0:
+        print(f'⏭️  Database already has {Card.query.count()} cards — skipping seed.')
+        return
     for data in CARDS_DATA:
         card = Card(**data)
         db.session.add(card)
     db.session.commit()
+    print(f'✅  Database seeded with {Card.query.count()} LLM trading cards.')

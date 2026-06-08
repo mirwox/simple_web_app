@@ -10,4 +10,7 @@ npm install
 npm run build
 cd ..
 
+echo "==> Seeding database (skips if already seeded)..."
+cd server && FLASK_ENV=production flask --app app seed && cd ..
+
 echo "==> Build complete ✅"

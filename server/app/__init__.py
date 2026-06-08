@@ -56,9 +56,8 @@ def create_app(config_name=None):
 
     @app.cli.command('seed')
     def seed_command():
-        """Seed the database with the 10 LLM trading cards."""
+        """Seed the database with the 22 LLM trading cards (idempotent)."""
         seed_db()
-        print('✅  Database seeded with 10 LLM trading cards.')
 
     # ── Create tables on first request (dev convenience) ────────
     with app.app_context():
